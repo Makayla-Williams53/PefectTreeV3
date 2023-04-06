@@ -15,5 +15,5 @@ public class PerfectTree extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         int height = extras.getInt("height");
         Toast.makeText(this, "the sent height is: " + height, Toast.LENGTH_SHORT).show();
-    }
-}
+    }//end onCreate
+}//end PerfectTree
