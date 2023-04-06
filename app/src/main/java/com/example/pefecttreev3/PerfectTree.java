@@ -12,8 +12,11 @@ public class PerfectTree extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_perfect_tree);
 
+        //Takes out the extra integers send from the previous activity
         Bundle extras = getIntent().getExtras();
         int height = extras.getInt("height");
-        Toast.makeText(this, "the sent height is: " + height, Toast.LENGTH_SHORT).show();
+        int root = extras.getInt("root");
+        Toast.makeText(this, "the sent height is: " + height + " the send root is: " + root, Toast.LENGTH_SHORT).show();
+
     }//end onCreate
 }//end PerfectTree

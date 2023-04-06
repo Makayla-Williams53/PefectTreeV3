@@ -25,10 +25,15 @@ public class MainActivity extends AppCompatActivity {
         String tempHeight = String.valueOf(heightInput.getEditableText());
         int height = Integer.parseInt(tempHeight);
 
-        Log.i("MyLog", "height of the tree: " + height);
+        TextInputEditText rootInput = findViewById(R.id.rootInput);
+        String tempRoot = String.valueOf(rootInput.getEditableText());
+        int root = Integer.parseInt(tempRoot);
+        Log.i("MyLog", "root of the tree: " + root);
+
         //This creates the intent and sets an extra with the value of the height
         Intent intent = new Intent(MainActivity.this, PerfectTree.class);
         intent.putExtra("height", height);
+        intent.putExtra("root", root);
         startActivity(intent);
     }//end goButton
 }//end MainActivity
