@@ -56,7 +56,6 @@ public class Tree
     //add row
     public void addRow(int key, String operation)
     {
-        count = modifyNum(count, operation);
         publicKey = key;
         publicOp = operation;
         //variable to hold where i was at the start
@@ -79,6 +78,7 @@ public class Tree
                 //create a left and right child
                 for(int j = 0; j < size; j++)
                 {
+                    count = modifyNum(count, operation);
                     //remove the current node from the queue
                     TreeNode node = queue.remove();
                     //add left child
@@ -86,7 +86,7 @@ public class Tree
                     count = modifyNum(count, operation);
                     //add right child
                     node.right = new TreeNode(count);
-                    count = modifyNum(count, operation);
+
 
                     //add the children to the queue
                     queue.add(node.left);
