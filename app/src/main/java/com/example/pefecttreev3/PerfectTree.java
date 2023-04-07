@@ -18,7 +18,8 @@ public class PerfectTree extends AppCompatActivity {
         int height = extras.getInt("height");
         int root = extras.getInt("root");
         String pattern = extras.getString("pattern");
-        Log.i("MyLog", "sent pattern of the tree: " + pattern);
+        int num = extras.getInt("num");
+        Log.i("MyLog", "sent pattern of the tree: " + num);
 
     }//end onCreate
 }//end PerfectTree
