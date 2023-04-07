@@ -21,13 +21,10 @@ public class PerfectTree extends AppCompatActivity {
         int num = extras.getInt("num");
         Tree myTree = new Tree();
 
-        if(pattern.equals("+"))
+        myTree.addRoot(root);
+        for(int i = 0; i < height; i++)
         {
-            myTree.addRoot(root);
-            for(int i = 0; i < height; i++)
-            {
-                myTree.addRow(num, pattern);
-            }
+            myTree.addRow(num, pattern);
         }
         Log.i("My tag", "The first tree is: " + myTree.getTreeValues(myTree.getRoot()));
     }//end onCreate
