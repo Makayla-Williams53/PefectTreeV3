@@ -13,9 +13,11 @@ public class Tree
     private int i = 0;
     private int depth = 0;
     private int size;
-    private int count = 1;
+    private int count = 0;
+    private int publicKey;
+    private String publicOp;
     //set a new count variable for the different nodes
-    private int newCount = 1;
+    private int newCount = 0;
     //boolean for search method
     private static boolean found = false;
 
@@ -42,6 +44,7 @@ public class Tree
         {
             root = new TreeNode(x);
             queue.add(root);
+            count = x;
             depth++;
         }
         else
@@ -51,8 +54,11 @@ public class Tree
     }//end addRoot
 
     //add row
-    public void addRow()
+    public void addRow(int key, String operation)
     {
+        count = modifyNum(count, operation);
+        publicKey = key;
+        publicOp = operation;
         //variable to hold where i was at the start
         int tempi = i;
 
@@ -77,10 +83,10 @@ public class Tree
                     TreeNode node = queue.remove();
                     //add left child
                     node.left = new TreeNode(count);
-                    count++;
+                    count = modifyNum(count, operation);
                     //add right child
                     node.right = new TreeNode(count);
-                    count++;
+                    count = modifyNum(count, operation);
 
                     //add the children to the queue
                     queue.add(node.left);
@@ -99,7 +105,7 @@ public class Tree
     //was to create a new node with one less row, then set root to row
     public void deleteRow(TreeNode temp)
     {
-        newCount = 1;
+        newCount = modifyNum(root.value, publicOp);
         //set a depth with a value 2 less than the original depth
         int newDepth = depth - 2;
         depth = newDepth + 1;
@@ -135,9 +141,9 @@ public class Tree
                         //set a current node to the first one in the queue and remove it from the queue
                         TreeNode node = newQueue.remove();
                         node.left = new TreeNode(newCount);
-                        newCount++;
+                        newCount = modifyNum(newCount, publicOp);
                         node.right = new TreeNode(newCount);
-                        newCount++;
+                        newCount = modifyNum(newCount, publicOp);
 
                         //add node left and node right to queue
                         newQueue.add(node.left);
@@ -245,4 +251,26 @@ public class Tree
             right = null;
         }//end constructor TreeNode
     }//end class TreeNode
+
+    private int modifyNum(int x, String operation)
+    {
+        int output;
+        if(operation == "+")
+        {
+            output = x + publicKey;
+        }//end if
+        else if(operation == "/")
+        {
+            output = x / publicKey;
+        }//end first else if
+        else if(operation == "*")
+        {
+            output = x * publicKey;
+        }//end second else if
+        else
+        {
+            output = x - publicKey;
+        }//end else
+        return output;
+    }//end modifyNum
 }//end Tree class
