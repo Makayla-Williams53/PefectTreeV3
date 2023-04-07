@@ -28,6 +28,14 @@ public class MainActivity extends AppCompatActivity {
         autoCompleteTextView = findViewById(R.id.patternInput);
         adapterItems = new ArrayAdapter<String>(this, R.layout.list_item, item);
         autoCompleteTextView.setAdapter(adapterItems);
+
+        autoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                String item = adapterView.getItemAtPosition(i).toString();
+                Toast.makeText(MainActivity.this, "Item: " + item, Toast.LENGTH_SHORT).show();
+            }
+        });
     }//end onCreate
 
     public void goButton(View v)
@@ -37,15 +45,23 @@ public class MainActivity extends AppCompatActivity {
         String tempHeight = String.valueOf(heightInput.getEditableText());
         int height = Integer.parseInt(tempHeight);
 
+        //This takes the text from the rootInput text area and stores it in the int variable root
         TextInputEditText rootInput = findViewById(R.id.rootInput);
         String tempRoot = String.valueOf(rootInput.getEditableText());
         int root = Integer.parseInt(tempRoot);
-        Log.i("MyLog", "root of the tree: " + root);
+
+        //This takes the text from the patternInput dropdown menu and stores it in the string pattern
+        AutoCompleteTextView patternInput = findViewById(R.id.patternInput);
+        String pattern = String.valueOf(patternInput.getEditableText());
+
+//
+
 
         //This creates the intent and sets an extra with the value of the height
         Intent intent = new Intent(MainActivity.this, PerfectTree.class);
         intent.putExtra("height", height);
         intent.putExtra("root", root);
-        startActivity(intent);
+        intent.putExtra("pattern", pattern);
+        //startActivity(intent);
     }//end goButton
 }//end MainActivity

@@ -3,6 +3,7 @@ package com.example.pefecttreev3;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 public class PerfectTree extends AppCompatActivity {
@@ -16,7 +17,8 @@ public class PerfectTree extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         int height = extras.getInt("height");
         int root = extras.getInt("root");
-        Toast.makeText(this, "the sent height is: " + height + " the send root is: " + root, Toast.LENGTH_SHORT).show();
+        String pattern = extras.getString("pattern");
+        Log.i("MyLog", "sent pattern of the tree: " + pattern);
 
     }//end onCreate
 }//end PerfectTree
