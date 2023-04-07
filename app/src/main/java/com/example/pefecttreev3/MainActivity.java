@@ -54,10 +54,10 @@ public class MainActivity extends AppCompatActivity {
         AutoCompleteTextView patternInput = findViewById(R.id.patternInput);
         String pattern = String.valueOf(patternInput.getEditableText());
 
+        //This takes the text from the patternNumInput text area and stores it in the int variable num
         TextInputEditText patternNumInput = findViewById(R.id.patternNumInput);
         String tempNum = String.valueOf(patternNumInput.getEditableText());
         int num = Integer.parseInt(tempNum);
-        Log.i("MyLog", "pattern of the tree: " + num);
 
         //This creates the intent and sets an extra with the value of the height
         Intent intent = new Intent(MainActivity.this, PerfectTree.class);

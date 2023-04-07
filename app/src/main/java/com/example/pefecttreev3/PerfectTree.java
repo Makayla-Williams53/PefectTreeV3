@@ -20,6 +20,5 @@ public class PerfectTree extends AppCompatActivity {
         String pattern = extras.getString("pattern");
         int num = extras.getInt("num");
         Log.i("MyLog", "sent pattern of the tree: " + num);
-
     }//end onCreate
 }//end PerfectTree
