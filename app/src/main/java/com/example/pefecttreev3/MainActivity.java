@@ -6,16 +6,28 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
+import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class MainActivity extends AppCompatActivity {
 
+    String[] item = {"+", "-", "/", "*"};
+    AutoCompleteTextView autoCompleteTextView;
+    ArrayAdapter<String> adapterItems;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        autoCompleteTextView = findViewById(R.id.patternInput);
+        adapterItems = new ArrayAdapter<String>(this, R.layout.list_item, item);
+        autoCompleteTextView.setAdapter(adapterItems);
     }//end onCreate
 
     public void goButton(View v)
