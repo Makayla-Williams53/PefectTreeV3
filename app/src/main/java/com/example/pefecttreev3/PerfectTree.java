@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class PerfectTree extends AppCompatActivity {
@@ -27,5 +28,8 @@ public class PerfectTree extends AppCompatActivity {
             myTree.addRow(num, pattern);
         }
         Log.i("My tag", "The first tree is: " + myTree.getTreeValues(myTree.getRoot()));
+
+        TextView treePrint = findViewById(R.id.treeView);
+        treePrint.setText(myTree.TreePrinter(myTree));
     }//end onCreate
 }//end PerfectTree

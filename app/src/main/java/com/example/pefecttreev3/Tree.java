@@ -236,6 +236,48 @@ public class Tree
         return baos.toString();
     }//end getTreeValues
 
+    public static int getCol(int h)
+    {
+        if(h == 1)
+            return 1;
+        return getCol(h - 1) + getCol(h - 1) + 1;
+    }
+
+    public void printTree(int[][]M, TreeNode root, int col, int row, int height)
+    {
+        if(root == null)
+            return;
+        M[row][col] = root.value;
+        printTree(M, root.left, col - (int)Math.pow(2, height - 2), row + 1, height - 1);
+        printTree(M, root.right, col + (int)Math.pow(2, height - 2), row + 1, height -1);
+    }
+
+    public String TreePrinter(Tree tree)
+    {
+        String output = "";
+        int h = depth;
+        int col = getCol(h);
+        int[][] M = new int[h][col];
+        printTree(M, root, col / 2, 0, h);
+        System.out.print(root.value);
+        for(int i = 0; i < h; i++)
+        {
+            for(int j = 0; j < col; j++)
+            {
+                if(M[i][j] == 0)
+                {
+                    output += "  ";
+                }
+                else
+                {
+                    output += M[i][j] + " ";
+                }
+            }
+            output += "\n";
+        }
+        return output;
+    }
+
     private static class TreeNode
     {
         //creates variables
