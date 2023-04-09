@@ -34,7 +34,7 @@ public class PerfectTree extends AppCompatActivity {
         for(int i = 0; i < height; i++)
         {
             myTree.addRow(num, pattern);
-        }
+        }//end for
         updateView();
 
     }//end onCreate
@@ -43,13 +43,13 @@ public class PerfectTree extends AppCompatActivity {
     {
         myTree.addRowV2(myTree.getRoot(), num, pattern, root);
         updateView();
-    }
+    }//end addRow
 
     public void deleteRow(View v)
     {
         myTree.deleteRow(myTree.getRoot());
         updateView();
-    }
+    }//end deleteRow
 
     public void updateView()
     {
@@ -57,5 +57,5 @@ public class PerfectTree extends AppCompatActivity {
         treePrint.setMovementMethod(new ScrollingMovementMethod());
         treePrint.setText(myTree.print2D(myTree.getRoot()));
         Log.i("My Log", myTree.getTreeValues(myTree.getRoot()));
-    }
+    }//end updateView
 }//end PerfectTree

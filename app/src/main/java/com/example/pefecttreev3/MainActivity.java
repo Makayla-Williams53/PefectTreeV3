@@ -34,8 +34,8 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String item = adapterView.getItemAtPosition(i).toString();
                 Toast.makeText(MainActivity.this, "Item: " + item, Toast.LENGTH_SHORT).show();
-            }
-        });
+            }//end onItemClick
+        });//end setOnItemClickListener
     }//end onCreate
 
     public void goButton(View v)

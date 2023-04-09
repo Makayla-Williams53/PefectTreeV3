@@ -49,11 +49,11 @@ public class Tree
             queue.add(root);
             count = x;
             depth++;
-        }
+        }//end if
         else
         {
             System.out.println("\nThis tree already has a root");
-        }
+        }//end else
     }//end addRoot
 
     //add row
@@ -104,6 +104,8 @@ public class Tree
         depth++;
     }//end addRow
 
+    //needed to create a new addRow method because the first one modifies the root tree but never replaces the root tree with the new nodes
+    //So this one has the same idea as the delete method, where it recreates the root and then reassigns the tree
     public void addRowV2(TreeNode temp, int key, String operation, int start)
     {
         publicKey = key;
@@ -121,7 +123,7 @@ public class Tree
             i = newi + 1;
             root = newRoot;
             depth = newDepth + 1;
-        }
+        }//end if
         else
         {
             TreeNode newRoot = new TreeNode(temp.value);
@@ -133,7 +135,7 @@ public class Tree
                 if(newi > newDepth)
                 {
                     break;
-                }
+                }//end inner if
                 else
                 {
                     for(int j = 0; j < newSize; j++)
@@ -153,8 +155,8 @@ public class Tree
             i = newi + 1;
             root = newRoot;
             depth = newDepth + 1;
-        }
-    }
+        }//end else
+    }//end addRowV2
 
     //The only way my brain could figure out how to delete a row
     //was to create a new node with one less row, then set root to row
@@ -216,12 +218,12 @@ public class Tree
             TreeNode newRoot = new TreeNode(root.value);
             root = newRoot;
             depth = newDepth + 1;
-        }
+        }//end else if
         else
         {
             depth = newDepth + 1;
             root = null;
-        }
+        }//end else
     }//end deleteRow
 
     //takes the results from the searchNode and puts it into printed sentences
@@ -365,17 +367,17 @@ public class Tree
         for(int i = COUNT; i <= space; i++)
         {
             output += " ";
-        }
+        }//end for
         output += base.value + "\n";
         print2DUtil(base.left, space);
-    }
+    }//end print2DUtil
 
     public String print2D(TreeNode base)
     {
         output = "";
         print2DUtil(base, 0);
         return output;
-    }
+    }//end print2D
 
     private static class TreeNode
     {
