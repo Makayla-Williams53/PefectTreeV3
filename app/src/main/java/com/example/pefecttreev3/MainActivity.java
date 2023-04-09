@@ -28,14 +28,6 @@ public class MainActivity extends AppCompatActivity {
         autoCompleteTextView = findViewById(R.id.patternInput);
         adapterItems = new ArrayAdapter<String>(this, R.layout.list_item, item);
         autoCompleteTextView.setAdapter(adapterItems);
-
-        autoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                String item = adapterView.getItemAtPosition(i).toString();
-                Toast.makeText(MainActivity.this, "Item: " + item, Toast.LENGTH_SHORT).show();
-            }
-        });
     }//end onCreate
 
     public void goButton(View v)

@@ -258,15 +258,23 @@ public class Tree
         int h = depth;
         int col = getCol(h);
         int[][] M = new int[h][col];
-        printTree(M, root, col / 2, 0, h);
-        System.out.print(root.value);
         for(int i = 0; i < h; i++)
         {
             for(int j = 0; j < col; j++)
             {
-                if(M[i][j] == 0)
+                M[i][j] = -1;
+            }
+        }
+        printTree(M, root, col / 2, 0, h);
+        System.out.print(root.value);
+
+        for(int i = 0; i < h; i++)
+        {
+            for(int j = 0; j < col; j++)
+            {
+                if(M[i][j] == -1)
                 {
-                    output += "  ";
+                    output += "   ";
                 }
                 else
                 {
