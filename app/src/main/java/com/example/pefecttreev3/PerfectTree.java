@@ -36,11 +36,12 @@ public class PerfectTree extends AppCompatActivity {
             myTree.addRow(num, pattern);
         }
         updateView();
+
     }//end onCreate
 
     public void addRow(View v)
     {
-        myTree.addRow(num, pattern);
+        myTree.addRowV2(myTree.getRoot(), num, pattern, root);
         updateView();
     }
 
@@ -54,6 +55,7 @@ public class PerfectTree extends AppCompatActivity {
     {
         TextView treePrint = findViewById(R.id.treeView);
         treePrint.setMovementMethod(new ScrollingMovementMethod());
-        treePrint.setText(myTree.TreePrinter(myTree));
+        treePrint.setText(myTree.print2D(myTree.getRoot()));
+        Log.i("My Log", myTree.getTreeValues(myTree.getRoot()));
     }
 }//end PerfectTree

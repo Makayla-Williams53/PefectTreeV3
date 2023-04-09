@@ -12,31 +12,32 @@
     tools:context=".PerfectTree">
 
     <HorizontalScrollView
-        android:layout_width="match_parent"
+        android:layout_width="410dp"
         android:layout_height="match_parent"
         android:fadeScrollbars="false"
         android:scrollbarSize="10dp"
         android:layout_weight="1">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="410dp"
             android:layout_height="match_parent"
-            android:orientation="vertical" >
+            android:orientation="vertical"
+            android:layout_weight="1">
 
             <TextView
                 android:id="@+id/treeView"
-                android:layout_width="wrap_content"
+                android:layout_width="410dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:gravity="left|center"
                 android:fadeScrollbars="false"
-                android:gravity="center_horizontal|center_vertical"
                 android:scrollbarSize="10dp"
+                android:scrollbarStyle="outsideInset"
                 android:scrollbars="vertical"
                 android:scrollHorizontally="true"
-                android:textAlignment="center"
                 android:textAllCaps="false"
                 android:textColor="#000"
-                android:textSize="25sp"
+                android:textSize="15sp"
                 android:textStyle="bold" />
         </LinearLayout>
     </HorizontalScrollView>

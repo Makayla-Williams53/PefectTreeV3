@@ -1,5 +1,7 @@
 package com.example.pefecttreev3;
 
+import android.util.Log;
+
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.LinkedList;
@@ -18,6 +20,7 @@ public class Tree
     private String publicOp;
     //set a new count variable for the different nodes
     private int newCount = 0;
+    private int tempCount = 0;
     //boolean for search method
     private static boolean found = false;
 
@@ -96,10 +99,62 @@ public class Tree
         }//end while loop
 
         //sets i back to increase by 1 from where it was at the start of the call
-        i = tempi+1;
+        i = tempi + 1;
         //increases the depth by 1
         depth++;
     }//end addRow
+
+    public void addRowV2(TreeNode temp, int key, String operation, int start)
+    {
+        publicKey = key;
+        publicOp = operation;
+
+        tempCount = modifyNum(start, operation);
+        int newDepth = depth;
+        int newi = 0;
+
+        Queue<TreeNode> newQueue = new LinkedList<>();
+        if(newDepth <= 0)
+        {
+            TreeNode newRoot = new TreeNode(start);
+            root = newRoot;
+            i = newi + 1;
+            root = newRoot;
+            depth = newDepth + 1;
+        }
+        else
+        {
+            TreeNode newRoot = new TreeNode(temp.value);
+            newQueue.add(newRoot);
+            while(!newQueue.isEmpty())
+            {
+                int newSize = newQueue.size();
+                newi++;
+                if(newi > newDepth)
+                {
+                    break;
+                }
+                else
+                {
+                    for(int j = 0; j < newSize; j++)
+                    {
+                        TreeNode node = newQueue.remove();
+                        node.left = new TreeNode(tempCount);
+                        tempCount = modifyNum(tempCount, operation);
+                        node.right = new TreeNode(tempCount);
+                        tempCount = modifyNum(tempCount, operation);
+
+                        newQueue.add(node.left);
+                        newQueue.add(node.right);
+                    }//end for loop
+                }//end else
+            }//end while loop
+
+            i = newi + 1;
+            root = newRoot;
+            depth = newDepth + 1;
+        }
+    }
 
     //The only way my brain could figure out how to delete a row
     //was to create a new node with one less row, then set root to row
@@ -108,7 +163,7 @@ public class Tree
         newCount = modifyNum(root.value, publicOp);
         //set a depth with a value 2 less than the original depth
         int newDepth = depth - 2;
-        depth = newDepth + 1;
+
         if(newDepth > 0)
         {
             Queue<TreeNode> newQueue = new LinkedList<>();
@@ -154,9 +209,17 @@ public class Tree
 
             //set the original root to the newly created one
             root = newRoot;
+            depth = newDepth + 1;
+        }
+        else if(newDepth == 0)
+        {
+            TreeNode newRoot = new TreeNode(root.value);
+            root = newRoot;
+            depth = newDepth + 1;
         }
         else
         {
+            depth = newDepth + 1;
             root = null;
         }
     }//end deleteRow
@@ -236,53 +299,81 @@ public class Tree
         return baos.toString();
     }//end getTreeValues
 
-    public static int getCol(int h)
-    {
-        if(h == 1)
-            return 1;
-        return getCol(h - 1) + getCol(h - 1) + 1;
-    }
+//    public static int getCol(int h)
+//    {
+//        if(h == 1)
+//            return 1;
+//        return getCol(h - 1) + getCol(h - 1) + 1;
+//    }
+//
+//    public void printTree(int[][]M, TreeNode root, int col, int row, int height)
+//    {
+//        if(root == null)
+//            return;
+//        M[row][col] = root.value;
+//        printTree(M, root.left, col - (int)Math.pow(2, height - 2), row + 1, height - 1);
+//        printTree(M, root.right, col + (int)Math.pow(2, height - 2), row + 1, height -1);
+//    }
+//
+//    public String TreePrinter(Tree tree)
+//    {
+//        String output = "";
+//        int h = depth;
+//        int col = getCol(h);
+//        int[][] M = new int[h][col];
+//        for(int i = 0; i < h; i++)
+//        {
+//            for(int j = 0; j < col; j++)
+//            {
+//                M[i][j] = -1;
+//            }
+//        }
+//        printTree(M, root, col / 2, 0, h);
+//        System.out.print(root.value);
+//
+//        for(int i = 0; i < h; i++)
+//        {
+//            for(int j = 0; j < col; j++)
+//            {
+//                if(M[i][j] == -1)
+//                {
+//                    output += "   ";
+//                }
+//                else
+//                {
+//                    output += M[i][j] + " ";
+//                }
+//            }
+//            output += "\n";
+//        }
+//        return output;
+//    }
 
-    public void printTree(int[][]M, TreeNode root, int col, int row, int height)
+    static final int COUNT = 13;
+    String output = "";
+
+    private void print2DUtil(TreeNode base, int space)
     {
-        if(root == null)
+        if(base == null)
+        {
             return;
-        M[row][col] = root.value;
-        printTree(M, root.left, col - (int)Math.pow(2, height - 2), row + 1, height - 1);
-        printTree(M, root.right, col + (int)Math.pow(2, height - 2), row + 1, height -1);
+        }//end if
+        space += COUNT;
+        print2DUtil(base.right, space);
+
+        output += "\n";
+        for(int i = COUNT; i <= space; i++)
+        {
+            output += " ";
+        }
+        output += base.value + "\n";
+        print2DUtil(base.left, space);
     }
 
-    public String TreePrinter(Tree tree)
+    public String print2D(TreeNode base)
     {
-        String output = "";
-        int h = depth;
-        int col = getCol(h);
-        int[][] M = new int[h][col];
-        for(int i = 0; i < h; i++)
-        {
-            for(int j = 0; j < col; j++)
-            {
-                M[i][j] = -1;
-            }
-        }
-        printTree(M, root, col / 2, 0, h);
-        System.out.print(root.value);
-
-        for(int i = 0; i < h; i++)
-        {
-            for(int j = 0; j < col; j++)
-            {
-                if(M[i][j] == -1)
-                {
-                    output += "   ";
-                }
-                else
-                {
-                    output += M[i][j] + " ";
-                }
-            }
-            output += "\n";
-        }
+        output = "";
+        print2DUtil(base, 0);
         return output;
     }
 
@@ -305,15 +396,15 @@ public class Tree
     private int modifyNum(int x, String operation)
     {
         int output;
-        if(operation == "+")
+        if(operation.equals("+"))
         {
             output = x + publicKey;
         }//end if
-        else if(operation == "/")
+        else if(operation.equals("/"))
         {
             output = x / publicKey;
         }//end first else if
-        else if(operation == "*")
+        else if(operation.equals("*"))
         {
             output = x * publicKey;
         }//end second else if
