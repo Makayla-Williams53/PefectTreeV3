@@ -4,11 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
-import android.util.Log;
 import android.view.View;
-import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class PerfectTree extends AppCompatActivity {
 
@@ -56,6 +53,5 @@ public class PerfectTree extends AppCompatActivity {
         TextView treePrint = findViewById(R.id.treeView);
         treePrint.setMovementMethod(new ScrollingMovementMethod());
         treePrint.setText(myTree.print2D(myTree.getRoot()));
-        Log.i("My Log", myTree.getTreeValues(myTree.getRoot()));
     }//end updateView
 }//end PerfectTree
